@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char name[50];
+    char author[50];
+    float price;
+} Book;
+
+void enterIn4OfBook(Book *sach) {a
+    printf("Nhập tên sách: ");
+    scanf("%s", sach->name);
+    
+    printf("Nhập tên tác giả: ");
+    scanf("%s", sach->author);
+    
+    printf("Nhập giá sách: ");
+    scanf("%f", &(sach->price));
+}
+
+void displayIn4OfBook(Book *sach) {
+    printf("Ten sach: %s\n", sach->name);
+    printf("Tac gia: %s\n", sach->author);
+    printf("Gia sach: %.2f\n", sach->price);
+}
+
+int main() {
+    int numOfBook;
+    printf("Nhập số lượng sách: ");
+    scanf("%d", &numOfBook);
+    
+    Book *bookList = (Book *)malloc(numOfBook * sizeof(Book));
+    
+    for (int i = 0; i < numOfBook; i++) {
+        printf("\nNhập thông tin cho sách thứ: %d \n", i + 1);
+        enterIn4OfBook(&bookList[i]);
+    }
+    
+    printf("\nThông tin các sách vừa nhập:\n");
+    for (int i = 0; i < numOfBook; i++) {
+        printf("\nThông tin sách thứ %d:\n", i + 1);
+        enterIn4OfBook(&bookList[i]);
+    }
+    
+    free(bookList);
+    
+    return 0;
+}
